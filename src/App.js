@@ -18,9 +18,7 @@ export default class App extends React.Component {
           <Route path="/orgs/facebook/members">
             <MembersPage />
           </Route>
-          <Route path="/orgs/facebook/repos">
-            <ReposPage />
-          </Route>
+          <Route path="/orgs/facebook/repos" component={ReposPage} />
           <Route component={PageNotFound} />
         </Switch>
       </Router>
