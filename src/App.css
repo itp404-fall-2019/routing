@@ -13,3 +13,20 @@
 .text-center {
   text-align: center;
 }
+
+a {
+  color: blue;
+  text-decoration: none;
+}
+
+a.active {
+  text-decoration: underline;
+}
+
+img {
+  opacity: 0.3;
+}
+
+a.active img {
+  opacity: 1;
+}

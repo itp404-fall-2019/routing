@@ -2,7 +2,7 @@ import React from 'react';
 import MembersPage from './components/MembersPage';
 import ReposPage from './components/ReposPage';
 import PageNotFound from './components/PageNotFound';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom';
 import './App.css';
 
 export default class App extends React.Component {
@@ -11,8 +11,14 @@ export default class App extends React.Component {
       <Router>
         <h1>GitHub Organization: facebook</h1>
         <nav>
-          <Link to="/orgs/facebook/repos">Repos</Link>
-          <Link to="/orgs/facebook/members">Members</Link>
+          <ul>
+            <li>
+              <NavLink to="/orgs/facebook/repos">Repos</NavLink>
+            </li>
+            <li>
+              <NavLink to="/orgs/facebook/members">Members</NavLink>
+            </li>
+          </ul>
         </nav>
         <Switch>
           <Route path="/orgs/facebook/members">
