@@ -18,11 +18,13 @@ class App extends React.Component {
     this.setState({ loading: true });
     let members = await fetchMembers();
     this.setState({ members, repos: [], loading: false });
+    window.history.pushState({}, 'Members', '/orgs/facebook/members');
   }
   fetchRepos = async () => {
     this.setState({ loading: true });
     let repos = await fetchRepos();
     this.setState({ members: [], repos, loading: false });
+    window.history.pushState({}, 'Repos', '/orgs/facebook/repos');
   }
   render() {
     return (
