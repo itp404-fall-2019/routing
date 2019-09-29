@@ -1,56 +1,27 @@
 import React from 'react';
-import MemberImage from './MemberImage';
-import GitHubRepoCard from './GitHubRepoCard';
-import Loading from './Loading';
-import { fetchMembers, fetchRepos } from './GitHubApi';
+import MembersPage from './components/MembersPage';
+import ReposPage from './components/ReposPage';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './App.css';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      members: [],
-      repos: [],
-      loading: false
-    };
-  }
-  fetchMembers = async () => {
-    this.setState({ loading: true });
-    let members = await fetchMembers();
-    this.setState({ members, repos: [], loading: false });
-    window.history.pushState({}, 'Members', '/orgs/facebook/members');
-  }
-  fetchRepos = async () => {
-    this.setState({ loading: true });
-    let repos = await fetchRepos();
-    this.setState({ members: [], repos, loading: false });
-    window.history.pushState({}, 'Repos', '/orgs/facebook/repos');
-  }
+export default class App extends React.Component {
   render() {
     return (
-      <div>
+      <Router>
         <h1>GitHub Organization: facebook</h1>
         <nav>
-          <a href="#" onClick={this.fetchRepos}>Repos</a>
-          <a href="#" onClick={this.fetchMembers}>Members</a>
+          <Link to="/orgs/facebook/repos">Repos</Link>
+          <Link to="/orgs/facebook/members">Members</Link>
         </nav>
-        {this.state.loading ? <Loading /> : (
-          <>
-            <div className="members">
-              {this.state.members.map((member) => {
-                return <MemberImage member={member} key={member.id} />
-              })}
-            </div>
-            <div className="repos">
-              {this.state.repos.map((repo) => {
-                return <GitHubRepoCard repo={repo} key={repo.id} />
-              })}
-            </div>
-          </>
-        )}
-      </div>
+        <Switch>
+          <Route path="/orgs/facebook/members">
+            <MembersPage />
+          </Route>
+          <Route path="/orgs/facebook/repos">
+            <ReposPage />
+          </Route>
+        </Switch>
+      </Router>
     );
   }
 }
-
-export default App;
