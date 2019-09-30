@@ -15,6 +15,7 @@ export default class App extends React.Component {
           <Link to="/orgs/facebook/members">Members</Link>
         </nav>
         <Switch>
+          <Route path="/" exact={true} />
           <Route path="/orgs/facebook/members">
             <MembersPage />
           </Route>
