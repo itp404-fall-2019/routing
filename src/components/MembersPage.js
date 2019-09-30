@@ -3,7 +3,7 @@ import MemberImage from './MemberImage';
 import MemberDetails from './MemberDetails';
 import Loading from './Loading';
 import { fetchMembers } from './../GitHubApi';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route, NavLink } from 'react-router-dom';
 
 export default class MembersPage extends React.Component {
   constructor(props) {
@@ -26,9 +26,9 @@ export default class MembersPage extends React.Component {
           <div className="members">
             {this.state.members.map((member) => {
               return (
-                <Link to={`${match.path}/${member.login}`} key={member.id}>
+                <NavLink to={`${match.path}/${member.login}`} key={member.id}>
                   <MemberImage member={member} />
-                </Link>
+                </NavLink>
               );
             })}
           </div>
