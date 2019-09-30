@@ -1,6 +1,7 @@
 import React from 'react';
 import MembersPage from './components/MembersPage';
 import ReposPage from './components/ReposPage';
+import PageNotFound from './components/PageNotFound';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './App.css';
 
@@ -14,12 +15,14 @@ export default class App extends React.Component {
           <Link to="/orgs/facebook/members">Members</Link>
         </nav>
         <Switch>
+          <Route path="/" exact={true} />
           <Route path="/orgs/facebook/members">
             <MembersPage />
           </Route>
           <Route path="/orgs/facebook/repos">
             <ReposPage />
           </Route>
+          <Route component={PageNotFound} />
         </Switch>
       </Router>
     );
