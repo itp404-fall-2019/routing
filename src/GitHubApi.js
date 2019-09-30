@@ -5,6 +5,11 @@ export async function fetchMembers() {
   return response.json();
 }
 
+export async function fetchUser(login) {
+  let response = await fetch(`${API_URL}/users/${login}`);
+  return response.json();
+}
+
 export async function fetchRepos() {
   let response = await fetch(`${API_URL}/orgs/facebook/repos`);
   return response.json();
