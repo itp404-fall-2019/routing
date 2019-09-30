@@ -3,7 +3,7 @@ import MemberImage from './MemberImage';
 import MemberDetails from './MemberDetails';
 import Loading from './Loading';
 import { fetchMembers } from './../GitHubApi';
-import { Route, NavLink } from 'react-router-dom';
+import { Switch, Route, NavLink } from 'react-router-dom';
 
 export default class MembersPage extends React.Component {
   constructor(props) {
@@ -18,20 +18,27 @@ export default class MembersPage extends React.Component {
     this.setState({ members, loading: false });
   }
   render() {
+    const { match } = this.props;
+    
     return (
       <div>
         {this.state.loading ? <Loading /> : (
           <div className="members">
             {this.state.members.map((member) => {
               return (
-                <NavLink to={`/orgs/facebook/members/${member.login}`} key={member.id}>
+                <NavLink to={`${match.path}/${member.login}`} key={member.id}>
                   <MemberImage member={member} />
                 </NavLink>
               );
             })}
           </div>
         )}
-        <Route path={`/orgs/facebook/members/:login`} component={MemberDetails} />
+        <Switch>
+          <Route path={`${match.path}/:login`} component={MemberDetails} />
+          <Route path={match.path}>
+            <h3>Please select a member.</h3>
+          </Route>
+        </Switch>
       </div>
     );
   }

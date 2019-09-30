@@ -22,9 +22,7 @@ export default class App extends React.Component {
         </nav>
         <Switch>
           <Route path="/" exact={true} />
-          <Route path="/orgs/facebook/members">
-            <MembersPage />
-          </Route>
+          <Route path="/orgs/facebook/members" component={MembersPage} />
           <Route path="/orgs/facebook/repos" component={ReposPage} />
           <Route component={PageNotFound} />
         </Switch>
