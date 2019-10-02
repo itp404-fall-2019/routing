@@ -2,6 +2,8 @@ import React from 'react';
 import { fetchMembers } from './GitHubApi';
 import MemberImage from './MemberImage';
 import Loading from './Loading';
+import MemberDetails from './MemberDetails';
+import { Switch, Route, Link } from 'react-router-dom';
 
 export default class MembersPage extends React.Component {
   constructor(props) {
@@ -17,10 +19,24 @@ export default class MembersPage extends React.Component {
   }
   render() {
     return (
-      <div className="members">
-        {this.state.loading ? <Loading /> : this.state.members.map((member) => {
-          return <MemberImage member={member} key={member.id} />
-        })}
+      <div>
+        <div className="members left-nav">
+          {this.state.loading ? <Loading /> : this.state.members.map((member) => {
+            return (
+              <Link to={`/orgs/facebook/members/${member.login}`} key={member.id}>
+                <MemberImage member={member} />
+              </Link>
+            );
+          })}
+        </div>
+        <div className="main">
+          <Switch>
+            <Route path="/orgs/facebook/members/:login" component={MemberDetails} />
+            <Route path="/orgs/facebook/members">
+              <p>Please select a member.</p>
+            </Route>
+          </Switch>
+        </div>
       </div>
     );
   }

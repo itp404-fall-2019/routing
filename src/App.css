@@ -9,3 +9,12 @@
   margin: 15px;
   padding: 15px;
 }
+
+.left-nav {
+  width: 30%;
+  float: left;
+}
+
+.main {
+  width: 70%;
+}
