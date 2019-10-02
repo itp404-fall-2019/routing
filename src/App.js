@@ -2,7 +2,7 @@ import React from 'react';
 import MembersPage from './MembersPage';
 import ReposPage from './ReposPage';
 import PageNotFound from './PageNotFound';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
 import './App.css';
 
 export default class App extends React.Component {
@@ -13,14 +13,14 @@ export default class App extends React.Component {
         <nav>
           <ul>
             <li>
-              <Link to="/orgs/facebook/repos">
+              <NavLink to="/orgs/facebook/repos">
                 Repos
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/orgs/facebook/members">
+              <NavLink to="/orgs/facebook/members">
                 Members
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </nav>

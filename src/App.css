@@ -18,3 +18,19 @@
 .main {
   width: 70%;
 }
+
+a {
+  text-decoration: none;
+}
+
+a.active {
+  text-decoration: underline;
+}
+
+img {
+  opacity: 0.3;
+}
+
+a.active img {
+  opacity: 1;
+}
